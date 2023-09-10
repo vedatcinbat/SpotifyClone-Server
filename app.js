@@ -7,7 +7,7 @@ const userRoute = require('./routes/userRoute');
 const songRoute = require('./routes/songRoute');
 const albumRoute = require('./routes/albumRoute');
 const artistRoute = require('./routes/artistRoute');
-
+const defaultRoute = require('./routes/defaultRoute');
 const app = express();
 
 // Middlewares
@@ -27,6 +27,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use('/api', cors(corsOptions), defaultRoute);
 
 app.use('/api/users', cors(corsOptions), userRoute);
 app.use('/api/songs', cors(corsOptions), songRoute);
