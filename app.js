@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json()); // Parse JSON request bodies
 
-const allowedOrigins = ['http://localhost:5174','http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5174','http://localhost:5173', 'https://spotifyclone-vedatcinbat.firebaseapp.com'];
 
 const corsOptions = {
   origin: function (origin, callback) {
