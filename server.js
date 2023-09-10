@@ -17,21 +17,20 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(DB);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-}
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log('Db Connection Succesfull'));
 
 const port = process.env.PORT || 3000;
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
-})
-
+app.listen(port, async () => {
+  try {
+  } catch (error) {
+    console.log(error);
+  }
+  console.log(`Listening port ${port}`);
+});
