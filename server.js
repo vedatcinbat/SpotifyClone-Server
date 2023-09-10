@@ -1,40 +1,37 @@
-import { connect } from 'mongoose';
-import cors from 'cors';
-import User from './models/userModel';
-import Artist from './models/artistModel';
-import Song from './models/songModel';
-import Album from './models/albumModel';
-import PlayList from './models/playlistModel';
+const mongoose = require('mongoose');
+const cors = require('cors');
+const User = require('./models/userModel');
+const Artist = require('./models/artistModel');
+const Song = require('./models/songModel');
+const Album = require('./models/albumModel');
+const PlayList = require('./models/playlistModel');
 
-import { config } from 'dotenv';
+const dotenv = require('dotenv');
 
-config({ path: './config.env' });
+dotenv.config({ path: './config.env' });
 
-import { listen } from './app';
+const app = require('./app');
 
 const DB = process.env.DATABASE.replace(
   '<password>',
   process.env.DATABASE_PASSWORD,
 );
 
-const connectDB = async () => {
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => console.log('Db Connection Succesfull'));
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, async () => {
   try {
-    const conn = await connect(DB);
-    console.log(`MongoDB Connected : ${conn.connection.host}`);
   } catch (error) {
     console.log(error);
-    process.exit(1);
   }
-};
-
-app.all('*', (req,res) => {
-    res.json({"every thing":"is awesome"})
-})
-
-connectDB.then(() => {
-  const port = process.env.PORT || 3000;
-
-  app.listen(port, () => {
-    console.log(`Listening port ${port}`);
-  });
+  console.log(`Listening port ${port}`);
 });
+
