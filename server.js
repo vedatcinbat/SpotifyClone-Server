@@ -30,7 +30,7 @@ const connectDB = async () => {
 connectDB.then(() => {
   const port = process.env.PORT || 3000;
 
-  listen(port, () => {
+  app.listen(port, () => {
     console.log(`Listening port ${port}`);
   });
 });
