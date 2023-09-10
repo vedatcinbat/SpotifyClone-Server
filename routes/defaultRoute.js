@@ -4,7 +4,7 @@ const router = express.Router();
 
 const message = () => {
   res.status(200).json({
-    messge: 'This is message !',
+    messge: 'This is updated message !',
   });
 };
 
