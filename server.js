@@ -28,9 +28,5 @@ mongoose
 const port = process.env.PORT || 3000;
 
 app.listen(port, async () => {
-  try {
-  } catch (error) {
-    console.log(error);
-  }
   console.log(`Listening port ${port}`);
 });
